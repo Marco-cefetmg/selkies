@@ -38,6 +38,7 @@ jobs:
     - name: Build & publish ${{ matrix.name }} image
       uses: ./.github/actions/build_and_publish_image
       with:
+        cache: false
         build_args: ${{ matrix.build_args }}
         context: ${{ matrix.context }}
         dockerfile: ${{ matrix.dockerfile }}
