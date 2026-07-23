@@ -13,7 +13,7 @@ RUN apk add \
 
 WORKDIR /tmp
 
-RUN head -c 5 /dev/random > random_bytes && echo -e "TEST=>" && ls -al .
+RUN head -c 5 /dev/random > random_bytes && cat /etc/os-release && ls -al > testfile && cat testfile 2>&1
 
 COPY ./selkies-web-core /tmp/selkies-web-core
 COPY ./selkies-dashboard /tmp/selkies-dashboard
