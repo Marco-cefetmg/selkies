@@ -32,7 +32,7 @@ jobs:
           mkdocs build --strict --verbose --site-dir /opt/mkdocs
 
       - name: Upload MkDocs artifacts
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: /opt/mkdocs/
           retention-days: 1
