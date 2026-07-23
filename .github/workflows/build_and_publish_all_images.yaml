@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
   push:
     branches: [ main ]
-  #pull_request:
-  #  branches: [ main ]
+  pull_request:
+    branches: [ main ]
 env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 jobs:
@@ -20,6 +20,8 @@ jobs:
       contents: read
       packages: write
     strategy:
+      fail-fast: false
+      max-parallel: 1 
       matrix:
         include:
         - name: selkies-web-core
