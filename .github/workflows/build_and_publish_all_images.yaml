@@ -22,7 +22,7 @@ jobs:
       matrix:
         include:
         - name: selkies-web
-          context: .
+          context: addons/selkies-web-core
           dockerfile: addons/selkies-web-core/Dockerfile
 
         - name: py-build
