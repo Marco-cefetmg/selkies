@@ -13,7 +13,7 @@ RUN apk add \
 
 WORKDIR /tmp
 
-RUN ls -al
+RUN echo $(ls -al)
 
 COPY ./selkies-web-core /tmp/selkies-web-core
 COPY ./selkies-dashboard /tmp/selkies-dashboard
