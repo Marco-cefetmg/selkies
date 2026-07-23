@@ -9,6 +9,7 @@ on:
     inputs:
       tag:
         description: "Release Tag"
+        default: 'v1.6.4'
         required: true
         type: string
 env:
