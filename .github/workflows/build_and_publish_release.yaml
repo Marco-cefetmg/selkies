@@ -44,7 +44,8 @@ jobs:
       matrix:
         include:
         - name: selkies-web
-          context: addons/selkies-web-core
+          context: .
+          dockerfile: addons/selkies-web-core/Dockerfile
 
         - name: py-build
           build_args: |
