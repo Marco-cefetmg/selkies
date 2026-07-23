@@ -15,6 +15,13 @@
 		"ghcr.io/devcontainers/features/github-cli:1": {},
 		"ghcr.io/devcontainers-extra/features/act:1": {}
 	},
+	"mounts": [
+    	{
+    		"source": "/run/user/1000/docker.sock",
+    		"target": "/var/run/docker-host.sock",
+    		"type": "bind"
+    	}
+  	],
 	// Run privileged to run Chrome without --no-sandbox option.
 	"privileged": true,
 	// Increase SHM size to help with crashing on Chrome.
