@@ -44,7 +44,7 @@ jobs:
     strategy:
       matrix:
         include:
-        - name: selkies-web
+        - name: selkies-web-core
           context: addons/selkies-web-core
           dockerfile: Dockerfile
 
@@ -266,7 +266,7 @@ jobs:
           source: /opt/selkies-conda.tar.gz
           target: selkies-portable-${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}_amd64.tar.gz
 
-        - name: selkies-web
+        - name: selkies-web-core
           source: /opt/selkies-web.tar.gz
           target: selkies-web_${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}.tar.gz
 

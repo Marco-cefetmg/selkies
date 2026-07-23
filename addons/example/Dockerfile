@@ -12,7 +12,7 @@ ARG JS_BASE_IMAGE_RELEASE=main
 ARG LIBUDEV_IMAGE=ghcr.io/marco-cefetmg/selkies/fake-udev
 ARG LIBUDEV_IMAGE_RELEASE=main
 FROM ${PY_BUILD_IMAGE} AS selkies-build
-FROM ${WEB_IMAGE} AS selkies-web
+FROM ${WEB_IMAGE} AS selkies-web-core
 FROM ${JS_BASE_IMAGE}:${JS_BASE_IMAGE_RELEASE}-${DISTRIB_IMAGE}${DISTRIB_RELEASE} AS selkies-js-interposer
 FROM ${LIBUDEV_IMAGE}:${LIBUDEV_IMAGE_RELEASE}-${DISTRIB_IMAGE}${DISTRIB_RELEASE} AS selkies-fake-udev
 FROM ${DISTRIB_IMAGE}:${DISTRIB_RELEASE}
@@ -232,7 +232,7 @@ Pin-Priority: -1" > /etc/apt/preferences.d/firefox-nosnap && \
     cp -rf /etc/xdg/xfce4/panel/default.xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 
 # Install web application
-COPY --chown=1000:1000 --from=selkies-web /usr/share/nginx/html ./selkies-web
+COPY --chown=1000:1000 --from=selkies-web /usr/share/nginx/html ./selkies-web-core
 
 # Install Joystick Interposer
 COPY --chown=1000:1000 --from=selkies-js-interposer /opt/*.deb /opt/selkies-js-interposer.deb

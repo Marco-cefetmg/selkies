@@ -5,7 +5,7 @@
 ARG PY_BUILD_IMAGE=ghcr.io/marco-cefetmg/selkies/py-build:main
 ARG WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web:main
 FROM ${PY_BUILD_IMAGE} AS selkies-build
-FROM ${WEB_IMAGE} AS selkies-web
+FROM ${WEB_IMAGE} AS selkies-web-core
 FROM quay.io/condaforge/miniforge3:latest
 
 # Version for Conda
@@ -24,7 +24,7 @@ ADD build ${SELKIES_BUILD}
 # Obtain Python application and web interface
 ARG SELKIES_SOURCE=/opt/selkies-source
 COPY --from=selkies-build /opt/pypi/dist/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl ${SELKIES_SOURCE}/
-COPY --from=selkies-web /usr/share/nginx/html ${SELKIES_SOURCE}/selkies-web
+COPY --from=selkies-web /usr/share/nginx/html ${SELKIES_SOURCE}/selkies-web-core
 
 WORKDIR /opt
 RUN . /opt/conda/bin/activate && \

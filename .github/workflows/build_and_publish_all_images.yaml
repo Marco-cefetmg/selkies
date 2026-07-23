@@ -6,8 +6,8 @@ name: Build and publish all images
 
 on:
   workflow_dispatch:
-  #push:
-  #  branches: [ main ]
+  push:
+    branches: [ main ]
   #pull_request:
   #  branches: [ main ]
 env:
@@ -22,8 +22,8 @@ jobs:
     strategy:
       matrix:
         include:
-        - name: selkies-web
-          context: addons/selkies-web-core
+        - name: selkies-web-core
+          context: ./addons/selkies-web-core
           dockerfile: Dockerfile
 
         - name: py-build
@@ -38,7 +38,7 @@ jobs:
     - name: Build & publish ${{ matrix.name }} image
       uses: ./.github/actions/build_and_publish_image
       with:
-        cache: true
+        cache: false
         build_args: ${{ matrix.build_args }}
         context: ${{ matrix.context }}
         dockerfile: ${{ matrix.dockerfile }}
@@ -229,7 +229,7 @@ jobs:
           source: /opt/selkies-conda.tar.gz
           target: selkies-portable.tar.gz
 
-        - name: selkies-web
+        - name: selkies-web-core
           source: /opt/selkies-web.tar.gz
           target: selkies-web.tar.gz
 
