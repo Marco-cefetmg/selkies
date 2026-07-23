@@ -11,7 +11,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  // src/selkies-core.js is the bundled gst-web-core artifact, not source.
+  // src/selkies-core.js is the bundled selkies-web-core artifact, not source.
   { ignores: ['dist', 'src/selkies-core.js'] },
   {
     files: ['vite.config.js'],
