@@ -6,7 +6,7 @@
 ARG DISTRIB_IMAGE=ubuntu
 ARG DISTRIB_RELEASE=24.04
 ARG PY_BUILD_IMAGE=ghcr.io/marco-cefetmg/selkies/py-build:main
-ARG WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web:main
+ARG WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web-core:main
 ARG JS_BASE_IMAGE=ghcr.io/marco-cefetmg/selkies/js-interposer
 ARG JS_BASE_IMAGE_RELEASE=main
 ARG LIBUDEV_IMAGE=ghcr.io/marco-cefetmg/selkies/fake-udev
@@ -232,7 +232,7 @@ Pin-Priority: -1" > /etc/apt/preferences.d/firefox-nosnap && \
     cp -rf /etc/xdg/xfce4/panel/default.xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 
 # Install web application
-COPY --chown=1000:1000 --from=selkies-web /usr/share/nginx/html ./selkies-web-core
+COPY --chown=1000:1000 --from=selkies-web-core /usr/share/nginx/html ./selkies-web-core
 
 # Install Joystick Interposer
 COPY --chown=1000:1000 --from=selkies-js-interposer /opt/*.deb /opt/selkies-js-interposer.deb

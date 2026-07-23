@@ -200,7 +200,7 @@ jobs:
             DISTRIB_RELEASE=20.04
             GSTREAMER_BASE_IMAGE_RELEASE=${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
             PY_BUILD_IMAGE=ghcr.io/marco-cefetmg/selkies/py-build:${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
-            WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web:${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
+            WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web-core:${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
             JS_BASE_IMAGE_RELEASE=${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
             JS_BASE_IMAGE=ghcr.io/marco-cefetmg/selkies/js-interposer
           context: addons/example
@@ -213,7 +213,7 @@ jobs:
             DISTRIB_RELEASE=22.04
             GSTREAMER_BASE_IMAGE_RELEASE=${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
             PY_BUILD_IMAGE=ghcr.io/marco-cefetmg/selkies/py-build:${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
-            WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web:${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
+            WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web-core:${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
             JS_BASE_IMAGE_RELEASE=${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
             JS_BASE_IMAGE=ghcr.io/marco-cefetmg/selkies/js-interposer
           context: addons/example
@@ -226,7 +226,7 @@ jobs:
             DISTRIB_RELEASE=24.04
             GSTREAMER_BASE_IMAGE_RELEASE=${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
             PY_BUILD_IMAGE=ghcr.io/marco-cefetmg/selkies/py-build:${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
-            WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web:${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
+            WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web-core:${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
             JS_BASE_IMAGE_RELEASE=${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}
             JS_BASE_IMAGE=ghcr.io/marco-cefetmg/selkies/js-interposer
           context: addons/example
@@ -269,8 +269,8 @@ jobs:
           target: selkies-portable-${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}_amd64.tar.gz
 
         - name: selkies-web-core
-          source: /opt/selkies-web.tar.gz
-          target: selkies-web_${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}.tar.gz
+          source: /opt/selkies-web-core.tar.gz
+          target: selkies-web-core_${{ github.event_name != 'pull_request' && github.event.inputs.tag || 'main' }}.tar.gz
 
         - name: gstreamer
           version_suffix: -ubuntu20.04
