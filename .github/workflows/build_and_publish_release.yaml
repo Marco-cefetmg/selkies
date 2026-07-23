@@ -49,10 +49,11 @@ jobs:
           context: addons
           dockerfile: selkies-web-core/Dockerfile
 
-        #- name: py-build
-        #  build_args: |
-        #    PACKAGE_VERSION=${{ needs.get_semver.outputs.semver }}
-        #  context: .
+        - name: py-build
+          needs: selkies-web-core
+          build_args: |
+            PACKAGE_VERSION=${{ needs.get_semver.outputs.semver }}
+          context: .
 
     name: ${{ matrix.name }}${{ matrix.version_suffix }} image build & publish
     steps:
