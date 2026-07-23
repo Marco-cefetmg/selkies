@@ -8,3 +8,6 @@ NOTES.md
 src/**/.ruff_cache
 src/selkies/selkies_web/
 .github/act-history.json
+.vars
+.env
+.secret
