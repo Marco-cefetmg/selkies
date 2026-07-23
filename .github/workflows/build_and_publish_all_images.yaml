@@ -148,7 +148,7 @@ jobs:
 
   # Note: When modifying this job, copy modifications to all other workflow image jobs
   example_images:
-    needs: component_images
+    needs: [core_images, component_images]
     runs-on: ubuntu-latest
     permissions:
       contents: read
