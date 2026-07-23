@@ -13,9 +13,9 @@ RUN apk add \
 
 WORKDIR /tmp
 
-COPY ./selkies-web-core /tmp/selkies-web-core
-COPY ./selkies-dashboard /tmp/selkies-dashboard
-COPY ./universal-touch-gamepad /tmp/universal-touch-gamepad
+COPY ../selkies-web-core /tmp/selkies-web-core
+COPY ../selkies-dashboard /tmp/selkies-dashboard
+COPY ../universal-touch-gamepad /tmp/universal-touch-gamepad
 
 RUN \
   cd ./selkies-web-core && \
