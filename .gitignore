@@ -7,3 +7,4 @@ NOTES.md
 **/__pycache__/
 src/**/.ruff_cache
 src/selkies/selkies_web/
+.github/act-history.json

@@ -6,11 +6,12 @@ name: Build and publish all images
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+  #push:
+  #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 jobs:
   # Note: When modifying this job, copy modifications to all other workflow image jobs
   core_images:
@@ -336,12 +337,15 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v4
 
+    - name: Display the triggering user
+      run: echo "The user who triggered this workflow is ${{ github.actor }}"
+   
     - name: Log into registry ghcr.io
       uses: docker/login-action@v4
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ github.token }}
+        password: ${{ github.token || secrets.GITHUB_TOKEN }}
 
     - name: ${{ matrix.name }}${{ matrix.version_suffix }}${{ matrix.suffix }}_${{ matrix.platforms || 'linux/amd64' }} build artifact extraction
       run: |
