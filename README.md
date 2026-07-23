@@ -1,6 +1,6 @@
 ![Selkies WebRTC](/docs/assets/logo/horizontal-480.png)
 
-[![Build](https://github.com/selkies-project/selkies/actions/workflows/build_and_publish_all_images.yaml/badge.svg)](https://github.com/selkies-project/selkies/actions/workflows/build_and_publish_all_images.yaml)
+[![Build](https://github.com/marco-cefetmg/selkies/actions/workflows/build_and_publish_all_images.yaml/badge.svg)](https://github.com/marco-cefetmg/selkies/actions/workflows/build_and_publish_all_images.yaml)
 
 [![Discord](https://img.shields.io/badge/dynamic/json?logo=discord&label=Discord%20Members&query=approximate_member_count&url=https%3A%2F%2Fdiscordapp.com%2Fapi%2Finvites%2FwDNGDeSW5F%3Fwith_counts%3Dtrue)](https://discord.gg/wDNGDeSW5F)
 

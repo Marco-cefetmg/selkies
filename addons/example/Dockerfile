@@ -5,11 +5,11 @@
 # Supported base images: Ubuntu 24.04, 22.04, 20.04
 ARG DISTRIB_IMAGE=ubuntu
 ARG DISTRIB_RELEASE=24.04
-ARG PY_BUILD_IMAGE=ghcr.io/selkies-project/selkies/py-build:main
-ARG WEB_IMAGE=ghcr.io/selkies-project/selkies/selkies-web:main
-ARG JS_BASE_IMAGE=ghcr.io/selkies-project/selkies/js-interposer
+ARG PY_BUILD_IMAGE=ghcr.io/marco-cefetmg/selkies/py-build:main
+ARG WEB_IMAGE=ghcr.io/marco-cefetmg/selkies/selkies-web:main
+ARG JS_BASE_IMAGE=ghcr.io/marco-cefetmg/selkies/js-interposer
 ARG JS_BASE_IMAGE_RELEASE=main
-ARG LIBUDEV_IMAGE=ghcr.io/selkies-project/selkies/fake-udev
+ARG LIBUDEV_IMAGE=ghcr.io/marco-cefetmg/selkies/fake-udev
 ARG LIBUDEV_IMAGE_RELEASE=main
 FROM ${PY_BUILD_IMAGE} AS selkies-build
 FROM ${WEB_IMAGE} AS selkies-web
