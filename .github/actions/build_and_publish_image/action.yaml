@@ -43,7 +43,7 @@ inputs:
     description: Registry password
     required: false
   prefix:
-    default: "${{ github.repository }}"
+    default: "marco-cefetmg/selkies"
     description: Image prefix
     required: false
   subproject:
