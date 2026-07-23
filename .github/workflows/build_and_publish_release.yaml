@@ -45,7 +45,7 @@ jobs:
         include:
         - name: selkies-web
           context: addons/selkies-web-core
-          dockerfile: addons/selkies-web-core/Dockerfile
+          dockerfile: Dockerfile
 
         - name: py-build
           build_args: |
