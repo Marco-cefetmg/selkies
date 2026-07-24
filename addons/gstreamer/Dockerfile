@@ -36,7 +36,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         valgrind \
         yasm \
         openssl \
-        libssl3 \
         libssl-dev \
         libgmp-dev \
         libgsl-dev \
