@@ -90,6 +90,7 @@ requirements:
     - libopengl-devel                    # [linux]
     - libva                              # [linux]
     - libudev                            # [linux]
+    - libxkbcommon                       # [linux]
     - jack                               # [linux]
     - pthread-stubs                      # [linux]
     - pulseaudio-client                  # [linux]
@@ -121,11 +122,12 @@ requirements:
     # - pillow
     # - python-xlib
     - {{ pin_compatible('glib') }}
-    - pulseaudio                         # [linux]
+    # - pulseaudio                       # [linux]
     - pulseaudio-client                  # [linux]
     - libva                              # [linux]
     - libva-utils                        # [linux]
     - libxcb                             # [linux]
+    - libxkbcommon                       # [linux]
     - xorg-libxcvt                       # [linux]
     - xorg-libxdamage                    # [linux]
     - xorg-libxfixes                     # [linux]

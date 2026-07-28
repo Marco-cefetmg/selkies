@@ -11,6 +11,7 @@ pushd build
 export XDG_DATA_DIRS="${XDG_DATA_DIRS}:${PREFIX}/share:${BUILD_PREFIX}/share"
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:${PREFIX}/lib/pkgconfig:${BUILD_PREFIX}/lib/pkgconfig"
 export PKG_CONFIG="$(which pkg-config)"
+export CXXFLAGS="${CXXFLAGS:-} -include cstdint"
 
 # Build and install GStreamer
 export EXTRA_FLAGS="${EXTRA_FLAGS}"
@@ -34,7 +35,14 @@ export PIP_NO_INDEX="False"
 # C_INCLUDE_PATH is for building evdev
 C_INCLUDE_PATH="${CONDA_BUILD_SYSROOT}/usr/include" ${PYTHON} -m pip install -v "${SELKIES_SOURCE}/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl"
 # Install web interface components
-cp -rf "${SELKIES_SOURCE}/gst-web" "${PREFIX}/share/selkies-web"
+if [ -d "${SELKIES_SOURCE}/selkies-web-core" ]; then
+  cp -rf "${SELKIES_SOURCE}/selkies-web-core" "${PREFIX}/share/selkies-web"
+elif [ -d "${SELKIES_SOURCE}/gst-web" ]; then
+  cp -rf "${SELKIES_SOURCE}/gst-web" "${PREFIX}/share/selkies-web"
+else
+  echo "No web assets found in ${SELKIES_SOURCE}" >&2
+  exit 1
+fi
 # Install startup scripts
 cp -rf "${SELKIES_BUILD}/selkies-gstreamer-run" "${PREFIX}/bin/selkies-gstreamer-run"
 chmod -f +x "${PREFIX}/bin/selkies-gstreamer-run"
