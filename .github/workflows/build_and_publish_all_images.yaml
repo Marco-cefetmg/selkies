@@ -94,19 +94,19 @@ jobs:
             DISTRIB_RELEASE=20.04
           context: addons/gstreamer
 
-        # - name: gstreamer
-        #   version_suffix: -ubuntu22.04
-        #   build_args: |
-        #     DISTRIB_IMAGE=ubuntu
-        #     DISTRIB_RELEASE=22.04
-        #   context: addons/gstreamer
+        - name: gstreamer
+          version_suffix: -ubuntu22.04
+          build_args: |
+            DISTRIB_IMAGE=ubuntu
+            DISTRIB_RELEASE=22.04
+          context: addons/gstreamer
 
-        # - name: gstreamer
-        #   version_suffix: -ubuntu24.04
-        #   build_args: |
-        #     DISTRIB_IMAGE=ubuntu
-        #     DISTRIB_RELEASE=24.04
-        #   context: addons/gstreamer
+        - name: gstreamer
+          version_suffix: -ubuntu24.04
+          build_args: |
+            DISTRIB_IMAGE=ubuntu
+            DISTRIB_RELEASE=24.04
+          context: addons/gstreamer
 
         - name: js-interposer
           version_suffix: -ubuntu20.04
@@ -119,27 +119,27 @@ jobs:
           dockerfile: Dockerfile.debpkg
           platforms: linux/amd64,linux/arm64
 
-        # - name: js-interposer
-        #   version_suffix: -ubuntu22.04
-        #   build_args: |
-        #     DISTRIB_IMAGE=ubuntu
-        #     DISTRIB_RELEASE=22.04
-        #     PKG_NAME=selkies-js-interposer
-        #     PKG_VERSION=0.0.0
-        #   context: addons/js-interposer
-        #   dockerfile: Dockerfile.debpkg
-        #   platforms: linux/amd64,linux/arm64
+        - name: js-interposer
+          version_suffix: -ubuntu22.04
+          build_args: |
+            DISTRIB_IMAGE=ubuntu
+            DISTRIB_RELEASE=22.04
+            PKG_NAME=selkies-js-interposer
+            PKG_VERSION=0.0.0
+          context: addons/js-interposer
+          dockerfile: Dockerfile.debpkg
+          platforms: linux/amd64,linux/arm64
 
-        # - name: js-interposer
-        #   version_suffix: -ubuntu24.04
-        #   build_args: |
-        #     DISTRIB_IMAGE=ubuntu
-        #     DISTRIB_RELEASE=24.04
-        #     PKG_NAME=selkies-js-interposer
-        #     PKG_VERSION=0.0.0
-        #   context: addons/js-interposer
-        #   dockerfile: Dockerfile.debpkg
-        #   platforms: linux/amd64,linux/arm64
+        - name: js-interposer
+          version_suffix: -ubuntu24.04
+          build_args: |
+            DISTRIB_IMAGE=ubuntu
+            DISTRIB_RELEASE=24.04
+            PKG_NAME=selkies-js-interposer
+            PKG_VERSION=0.0.0
+          context: addons/js-interposer
+          dockerfile: Dockerfile.debpkg
+          platforms: linux/amd64,linux/arm64
 
         - name: turn-rest
           context: addons/turn-rest
@@ -260,15 +260,15 @@ jobs:
           source: /opt/selkies-latest.tar.gz
           target: selkies.tar.gz
 
-        # - name: gstreamer
-        #   version_suffix: -ubuntu22.04
-        #   source: /opt/selkies-latest.tar.gz
-        #   target: selkies.tar.gz
+        - name: gstreamer
+          version_suffix: -ubuntu22.04
+          source: /opt/selkies-latest.tar.gz
+          target: selkies.tar.gz
 
-        # - name: gstreamer
-        #   version_suffix: -ubuntu24.04
-        #   source: /opt/selkies-latest.tar.gz
-        #   target: selkies.tar.gz
+        - name: gstreamer
+          version_suffix: -ubuntu24.04
+          source: /opt/selkies-latest.tar.gz
+          target: selkies.tar.gz
 
         - name: js-interposer
           version_suffix: -ubuntu20.04
