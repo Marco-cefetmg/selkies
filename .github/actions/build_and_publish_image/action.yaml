@@ -81,7 +81,7 @@ runs:
       images: ${{ inputs.registry }}/${{ inputs.prefix }}/${{ inputs.subproject }}
 
   - name: Build and push ${{ inputs.subproject }} container image
-    uses: docker/build-push-action@v5
+    uses: docker/build-push-action@v7
     with:
       build-args: ${{ inputs.build_args }}
       context: ${{ inputs.context || '{{defaultContext}}' }}
