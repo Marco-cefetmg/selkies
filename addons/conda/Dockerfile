@@ -27,24 +27,16 @@ COPY --from=selkies-build /opt/pypi/dist/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-
 COPY --from=selkies-web-core /usr/share/nginx/html ${SELKIES_SOURCE}/selkies-web-core
 
 WORKDIR /opt
-
-RUN ls -al /opt/selkies-source/* | tee -a /root/debug.txt && cat /root/debug.txt
-RUN ls -al /opt/selkies-build/* | tee -a /root/debug.txt && cat /root/debug.txt
-
-# Configure conda solver to use libmamba
-RUN . /opt/conda/bin/activate && \
-    conda config --set solver libmamba
-
 # Install build tools, build local package, and pack environment using cache mounts
 RUN --mount=type=cache,target=/opt/conda/pkgs \
     --mount=type=cache,target=/root/.cache/conda \
     . /opt/conda/bin/activate && \
+    conda config --set solver libmamba && \
     conda install -c conda-forge -y conda-build conda-pack && \
     SELKIES_VERSION="${PKG_VERSION}" conda-build --no-test -c conda-forge -c nvidia "${SELKIES_BUILD}" && \
     conda create -n selkies -y --use-local -c conda-forge -c nvidia selkies-gstreamer && \
     conda-pack -f -n selkies --arcroot selkies -o /opt/selkies-conda.tar.gz --format tar.gz --compress-level 7 -j -1 && \
-    conda-build purge-all && \
-    conda clean --tarballs --index-cache -f -y
+    conda-build purge-all && conda clean --tarballs --index-cache -f -y
     
 # RUN . /opt/conda/bin/activate && \
 #     conda install -c conda-forge -y conda-build conda-pack && \
