@@ -243,15 +243,15 @@ jobs:
           source: /opt/selkies-latest.tar.gz
           target: selkies.tar.gz
 
-        - name: gstreamer
-          version_suffix: -ubuntu22.04
-          source: /opt/selkies-latest.tar.gz
-          target: selkies.tar.gz
+        # - name: gstreamer
+        #   version_suffix: -ubuntu22.04
+        #   source: /opt/selkies-latest.tar.gz
+        #   target: selkies.tar.gz
 
-        - name: gstreamer
-          version_suffix: -ubuntu24.04
-          source: /opt/selkies-latest.tar.gz
-          target: selkies.tar.gz
+        # - name: gstreamer
+        #   version_suffix: -ubuntu24.04
+        #   source: /opt/selkies-latest.tar.gz
+        #   target: selkies.tar.gz
 
         - name: js-interposer
           version_suffix: -ubuntu20.04
@@ -351,7 +351,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ github.token || secrets.GITHUB_TOKEN }}
+        password: ${{ github.token }}
 
     - name: ${{ matrix.name }}${{ matrix.version_suffix }}${{ matrix.suffix }}_${{ matrix.platforms || 'linux/amd64' }} build artifact extraction
       run: |
