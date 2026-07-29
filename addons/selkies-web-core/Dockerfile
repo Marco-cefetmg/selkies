@@ -63,3 +63,8 @@ RUN curl -o /usr/share/nginx/html/icon.png \
       https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/selkies-logo.png && \
     curl -o /usr/share/nginx/html/favicon.ico \
       https://raw.githubusercontent.com/linuxserver/docker-templates/refs/heads/master/linuxserver.io/img/selkies-icon.ico
+
+# Create release tarball
+RUN cp -R /usr/share/nginx/html /tmp/selkies-web-core && \
+    cd /tmp && tar -czvf /opt/selkies-web-core.tar.gz selkies-web-core && \
+    rm -rf /tmp/selkies-web-core
