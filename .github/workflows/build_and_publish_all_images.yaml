@@ -96,7 +96,7 @@ jobs:
           dockerfile: Dockerfile.debpkg
           platforms: linux/amd64,linux/arm64
 
-          - name: fake-udev
+        - name: fake-udev
           version_suffix: -ubuntu24.04
           build_args: |
             DISTRIB_IMAGE=ubuntu
