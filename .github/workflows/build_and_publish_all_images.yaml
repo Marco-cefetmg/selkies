@@ -43,7 +43,6 @@ jobs:
     - name: Build & publish ${{ matrix.name }} image
       uses: ./.github/actions/build_and_publish_image
       with:
-        cache: false
         build_args: ${{ matrix.build_args }}
         context: ${{ matrix.context }}
         dockerfile: ${{ matrix.dockerfile }}
@@ -51,6 +50,9 @@ jobs:
         push: ${{ github.event_name != 'pull_request' }}
         subproject: ${{ matrix.name }}
         tags: ghcr.io/marco-cefetmg/selkies/${{ matrix.name }}:${{ github.event_name != 'pull_request' && github.ref_name || 'main' }}${{ matrix.version_suffix }}
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ github.token }}
 
   # Note: When modifying this job, copy modifications to all other workflow image jobs
   component_images:
@@ -83,19 +85,19 @@ jobs:
             DISTRIB_RELEASE=20.04
           context: addons/gstreamer
 
-        - name: gstreamer
-          version_suffix: -ubuntu22.04
-          build_args: |
-            DISTRIB_IMAGE=ubuntu
-            DISTRIB_RELEASE=22.04
-          context: addons/gstreamer
+        # - name: gstreamer
+        #   version_suffix: -ubuntu22.04
+        #   build_args: |
+        #     DISTRIB_IMAGE=ubuntu
+        #     DISTRIB_RELEASE=22.04
+        #   context: addons/gstreamer
 
-        - name: gstreamer
-          version_suffix: -ubuntu24.04
-          build_args: |
-            DISTRIB_IMAGE=ubuntu
-            DISTRIB_RELEASE=24.04
-          context: addons/gstreamer
+        # - name: gstreamer
+        #   version_suffix: -ubuntu24.04
+        #   build_args: |
+        #     DISTRIB_IMAGE=ubuntu
+        #     DISTRIB_RELEASE=24.04
+        #   context: addons/gstreamer
 
         - name: js-interposer
           version_suffix: -ubuntu20.04
@@ -152,6 +154,9 @@ jobs:
         push: ${{ github.event_name != 'pull_request' }}
         subproject: ${{ matrix.name }}
         tags: ghcr.io/marco-cefetmg/selkies/${{ matrix.name }}:${{ github.event_name != 'pull_request' && github.ref_name || 'main' }}${{ matrix.version_suffix }}
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ github.token }}
 
   # Note: When modifying this job, copy modifications to all other workflow image jobs
   example_images:
@@ -216,6 +221,9 @@ jobs:
         push: ${{ github.event_name != 'pull_request' }}
         subproject: ${{ matrix.name }}
         tags: ghcr.io/marco-cefetmg/selkies/${{ matrix.name }}:${{ github.event_name != 'pull_request' && github.ref_name || 'main' }}${{ matrix.version_suffix }}
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ github.token }}
 
   # Note: When modifying this job, copy modifications to all other workflow image jobs
   upload_artifacts:

@@ -53,6 +53,10 @@ inputs:
     description: Full image names with tags
     required: true
 
+permissions:
+  contents: read
+  packages: write
+
 runs:
   using: composite
   steps:
