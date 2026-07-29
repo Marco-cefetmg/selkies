@@ -15,8 +15,8 @@ services:
   web:
     image: selkies-web-core
     build:
-      context: ./addons/selkies-web-core
-      dockerfile: Dockerfile
+      context: ./addons
+      dockerfile: selkies-web-core/Dockerfile
   test:
     ###
     # NOTE: export the DISTRIB_IMAGE and DISTRIB_RELEASE environment variables to change the base image during build and run.

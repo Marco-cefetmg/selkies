@@ -36,9 +36,9 @@ export PIP_NO_INDEX="False"
 C_INCLUDE_PATH="${CONDA_BUILD_SYSROOT}/usr/include" ${PYTHON} -m pip install -v "${SELKIES_SOURCE}/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl"
 # Install web interface components
 if [ -d "${SELKIES_SOURCE}/selkies-web-core" ]; then
-  cp -rf "${SELKIES_SOURCE}/selkies-web-core" "${PREFIX}/share/selkies-web"
+  cp -rf "${SELKIES_SOURCE}/selkies-web-core" "${PREFIX}/share/selkies-web-core"
 elif [ -d "${SELKIES_SOURCE}/gst-web" ]; then
-  cp -rf "${SELKIES_SOURCE}/gst-web" "${PREFIX}/share/selkies-web"
+  cp -rf "${SELKIES_SOURCE}/gst-web" "${PREFIX}/share/gst-web"
 else
   echo "No web assets found in ${SELKIES_SOURCE}" >&2
   exit 1
