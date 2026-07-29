@@ -12,6 +12,9 @@ on:
     branches: [ main ]
 env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+permissions:
+  contents: read
+  packages: write
 jobs:
   # Note: When modifying this job, copy modifications to all other workflow image jobs
   core_images:
