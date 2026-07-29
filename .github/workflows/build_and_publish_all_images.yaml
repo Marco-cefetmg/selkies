@@ -87,6 +87,24 @@ jobs:
           dockerfile: Dockerfile.debpkg
           platforms: linux/amd64,linux/arm64
 
+        - name: fake-udev
+          version_suffix: -ubuntu22.04
+          build_args: |
+            DISTRIB_IMAGE=ubuntu
+            DISTRIB_RELEASE=22.04
+          context: addons/fake-udev
+          dockerfile: Dockerfile.debpkg
+          platforms: linux/amd64,linux/arm64
+
+          - name: fake-udev
+          version_suffix: -ubuntu24.04
+          build_args: |
+            DISTRIB_IMAGE=ubuntu
+            DISTRIB_RELEASE=24.04
+          context: addons/fake-udev
+          dockerfile: Dockerfile.debpkg
+          platforms: linux/amd64,linux/arm64
+
         - name: gstreamer
           version_suffix: -ubuntu20.04
           build_args: |
