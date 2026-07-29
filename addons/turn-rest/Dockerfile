@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-FROM python:3-alpine
+FROM python:3.12-alpine
 
 ARG PIP_BREAK_SYSTEM_PACKAGES=1
 RUN pip3 install --no-cache-dir --force-reinstall flask gunicorn

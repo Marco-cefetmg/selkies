@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 FROM ghcr.io/marco-cefetmg/selkies/selkies-web-core:main as selkies-web-core
-FROM python:3
+FROM python:3.12
 
 LABEL maintainer="https://github.com/danisla,https://github.com/ehfd"
 

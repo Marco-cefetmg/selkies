@@ -11,3 +11,5 @@ src/selkies/selkies_web/
 .vars
 .env
 .secret
+Makefile
+Makedockfile*
