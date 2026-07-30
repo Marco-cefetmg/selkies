@@ -265,9 +265,9 @@ RUN echo "**** libva hack ****" && \
 ARG PYPI_PACKAGE=selkies
 ARG PACKAGE_VERSION=0.0.0.dev0
 ARG PIP_BREAK_SYSTEM_PACKAGES=1
-RUN pip3 uninstall -y cffi && pip3 install --no-cache-dir --force-reinstall cffi==$(dpkg-query -W -f='${Version}\n' python3-cffi-backend | sed 's/-.*//')
+# RUN pip3 uninstall -y cffi && pip3 install --no-cache-dir --force-reinstall cffi==$(dpkg-query -W -f='${Version}\n' python3-cffi-backend | sed 's/-.*//')
 COPY --chown=1000:1000 --from=selkies-build /opt/pypi/dist/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl .
-RUN pip3 install --no-cache-dir --force-reinstall --ignore-installed /opt/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl
+RUN pip3 install --no-cache-dir --force-reinstall --ignore-installed cffi==$(dpkg-query -W -f='${Version}\n' python3-cffi-backend | sed 's/-.*//') /opt/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl
 
 # Install proot-apps
 RUN mkdir -pm 755 /tmp/proot-apps && PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
