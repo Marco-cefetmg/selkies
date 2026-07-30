@@ -249,9 +249,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y /opt/libudev-fa
 
 RUN echo "**** libva hack ****" && \
   mkdir /tmp/libva && \
-  curl -o \
+  curl -f --retry 5 --retry-all-errors -o \
     /tmp/libva/libva.deb -L \
-    "https://launchpad.net/ubuntu/+source/libva/2.22.0-3ubuntu2/+build/30591127/+files/libva2_2.22.0-3ubuntu2_amd64.deb" && \
+    "http://mirrors.edge.kernel.org/ubuntu/pool/main/libv/libva/libva2_2.22.0-3ubuntu2_amd64.deb" && \
   cd /tmp/libva && \
   ar x libva.deb && \
   tar xf data.tar.zst && \
@@ -268,7 +268,6 @@ ARG PIP_BREAK_SYSTEM_PACKAGES=1
 RUN pip3 uninstall -y cffi && pip3 install --no-cache-dir --force-reinstall cffi==$(dpkg-query -W -f='${Version}\n' python3-cffi-backend | sed 's/-.*//')
 COPY --chown=1000:1000 --from=selkies-build /opt/pypi/dist/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl .
 RUN pip3 install --no-cache-dir --force-reinstall --ignore-installed /opt/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl
-RUN python3 -c "import cffi;import _cffi_backend;print(\"CFFI Frontend:\", cffi.__version__);print(\"CFFI Backend: \", _cffi_backend.__version__)"
 
 # Install proot-apps
 RUN mkdir -pm 755 /tmp/proot-apps && PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \

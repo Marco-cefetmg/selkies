@@ -23,6 +23,8 @@ services:
     ###
 
     image: selkies-example:latest-${DISTRIB_IMAGE:-ubuntu}${DISTRIB_RELEASE:-24.04}
+    stdin_open: true
+    tty: true
     entrypoint: ["tini", "--", "/bin/bash"]
     build:
       context: ./addons/example
@@ -71,5 +73,5 @@ services:
         read_only: true
 
     # Configure for interactive session
-    stdin_open: true
-    tty: true
+    #stdin_open: true
+    #tty: true
