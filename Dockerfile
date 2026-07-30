@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-FROM ghcr.io/marco-cefetmg/selkies/selkies-web-core:main as selkies-web-core
+FROM ghcr.io/marco-cefetmg/selkies/selkies-web-core:main AS selkies-web-core
 FROM python:3.12
 
 LABEL maintainer="https://github.com/danisla,https://github.com/ehfd"

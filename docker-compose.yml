@@ -23,7 +23,7 @@ services:
     ###
 
     image: selkies-example:latest-${DISTRIB_IMAGE:-ubuntu}${DISTRIB_RELEASE:-24.04}
-    entrypoint: ["/tini", "--", "/bin/bash"]
+    entrypoint: ["tini", "--", "/bin/bash"]
     build:
       context: ./addons/example
       dockerfile: Dockerfile
