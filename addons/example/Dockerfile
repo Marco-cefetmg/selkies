@@ -264,6 +264,9 @@ RUN echo "**** libva hack ****" && \
 ARG PYPI_PACKAGE=selkies
 ARG PACKAGE_VERSION=0.0.0.dev0
 ARG PIP_BREAK_SYSTEM_PACKAGES=1
+RUN python3 -c "import cffi;import _cffi_backend;print(\"CFFI Frontend:\", cffi.__version__);print(\"CFFI Backend: \", _cffi_backend.__version__)"
+RUN dpkg-query -W -f='${Version}\n' python3-cffi-backend | sed 's/-.*//'
+RUN pip uninstall -y cffi && pip install --no-cache-dir --force-reinstall cffi
 COPY --chown=1000:1000 --from=selkies-build /opt/pypi/dist/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl .
 RUN pip3 install --no-cache-dir --force-reinstall --ignore-installed /opt/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl
 
