@@ -13,3 +13,4 @@ src/selkies/selkies_web/
 .secret
 Makefile
 Makedockfile*
+*.log

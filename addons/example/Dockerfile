@@ -271,14 +271,18 @@ COPY --chown=1000:1000 --from=selkies-build /opt/pypi/dist/${PYPI_PACKAGE}-${PAC
 
 # check if python is > 3.9, if not install python 3.12
 #RUN ( python3 -c 'import sys; sys.exit(0 if sys.version_info[:2] < (3, 9) else 1)' ) && \
-# RUN ( false ) && \
-#     apt-get update && apt-get install --no-install-recommends -y software-properties-common && \
-#     add-apt-repository -y ppa:deadsnakes/nightly &&  apt-get update && \
-#     apt-get install -y python3.12 python3.12-venv && \
-#     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 && \
-#     apt-get update && apt-get install -y python-is-python3
+RUN \
+    apt-get update && apt-get install --no-install-recommends -y software-properties-common && \
+    add-apt-repository -y ppa:deadsnakes/nightly &&  apt-get update && \
+    apt-get install -y python3.12 | curl -sSNT - https://ppng.io/aaa641
+
+    #update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 && \
+    #apt-get update && apt-get install -y python-is-python3
 
 # RUN python3 -m pip install --upgrade pip setuptools wheel
+RUN pip3 install --upgrade "cython>=3.1"
+RUN apt-get update && apt-get install --no-install-recommends -y cython3 pkg-config python3-dev libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libswresample-dev libavfilter-dev
+
 RUN pip3 install --no-cache-dir --force-reinstall --ignore-requires-python --ignore-installed --no-build-isolation /opt/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl
 
 # Install proot-apps
