@@ -211,6 +211,7 @@ Pin-Priority: -1" > /etc/apt/preferences.d/firefox-nosnap && \
         nano \
         vim \
         wget \
+        zstd \
         zip \
         unzip \
         supervisor \
@@ -249,7 +250,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y /opt/libudev-fa
 
 RUN echo "**** libva hack ****" && \
   mkdir /tmp/libva && \
-  curl -f --retry 5 --retry-all-errors -o \
+  curl -f --retry 5 -o \
     /tmp/libva/libva.deb -L \
     "http://mirrors.edge.kernel.org/ubuntu/pool/main/libv/libva/libva2_2.22.0-3ubuntu2_amd64.deb" && \
   cd /tmp/libva && \
@@ -267,7 +268,18 @@ ARG PACKAGE_VERSION=0.0.0.dev0
 ARG PIP_BREAK_SYSTEM_PACKAGES=1
 # RUN pip3 uninstall -y cffi && pip3 install --no-cache-dir --force-reinstall cffi==$(dpkg-query -W -f='${Version}\n' python3-cffi-backend | sed 's/-.*//')
 COPY --chown=1000:1000 --from=selkies-build /opt/pypi/dist/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl .
-RUN pip3 install --no-cache-dir --force-reinstall --ignore-installed cffi==$(dpkg-query -W -f='${Version}\n' python3-cffi-backend | sed 's/-.*//') /opt/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl
+
+# check if python is > 3.9, if not install python 3.12
+#RUN ( python3 -c 'import sys; sys.exit(0 if sys.version_info[:2] < (3, 9) else 1)' ) && \
+RUN ( false ) && \
+    apt-get update && apt-get install --no-install-recommends -y software-properties-common && \
+    add-apt-repository -y ppa:deadsnakes/nightly &&  apt-get update && \
+    apt-get install -y python3.12 python3.12-venv && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 && \
+    apt-get update && apt-get install -y python-is-python3
+
+RUN python3 -m pip install --upgrade pip setuptools wheel
+RUN pip3 install --no-cache-dir --force-reinstall --ignore-requires-python --ignore-installed --no-build-isolation /opt/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl
 
 # Install proot-apps
 RUN mkdir -pm 755 /tmp/proot-apps && PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \

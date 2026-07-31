@@ -25,7 +25,9 @@ services:
     image: selkies-example:latest-${DISTRIB_IMAGE:-ubuntu}${DISTRIB_RELEASE:-24.04}
     stdin_open: true
     tty: true
-    entrypoint: ["tini", "--", "/bin/bash"]
+    # entrypoint: ["tini", "--", "/bin/bash"]
+    entrypoint: ["tini", "--", "/usr/bin/supervisord"]
+    # entrypoint: ["/usr/bin/supervisord"]
     build:
       context: ./addons/example
       dockerfile: Dockerfile
