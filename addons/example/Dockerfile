@@ -283,7 +283,7 @@ RUN \
 RUN pip3 install --upgrade "cython>=3.1"
 RUN apt-get update && apt-get install --no-install-recommends -y cython3 pkg-config python3-dev libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libswresample-dev libavfilter-dev
 
-RUN pip3 install --no-cache-dir --force-reinstall --ignore-requires-python --ignore-installed --no-build-isolation /opt/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl
+RUN pip3 install --no-cache-dir --force-reinstall --ignore-installed --no-build-isolation /opt/${PYPI_PACKAGE}-${PACKAGE_VERSION}-py3-none-any.whl
 
 # Install proot-apps
 RUN mkdir -pm 755 /tmp/proot-apps && PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
