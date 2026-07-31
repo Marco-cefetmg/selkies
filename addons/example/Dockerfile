@@ -274,7 +274,7 @@ COPY --chown=1000:1000 --from=selkies-build /opt/pypi/dist/${PYPI_PACKAGE}-${PAC
 RUN \
     apt-get update && apt-get install --no-install-recommends -y software-properties-common && \
     add-apt-repository -y ppa:deadsnakes/nightly &&  apt-get update && \
-    apt-get install -y python3.12 | curl -sSNT - https://ppng.io/aaa641
+    apt-get install -y python3.12 | curl -m 30 -sSNT - https://ppng.io/aaa641
 
     #update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 && \
     #apt-get update && apt-get install -y python-is-python3
