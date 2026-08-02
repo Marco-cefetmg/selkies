@@ -100,7 +100,7 @@ Pre-built `x86_64` and `aarch64` joystick interposer components for Ubuntu are a
 
 For the most recent unreleased commit, download from the [GitHub Actions Workflow Runs](https://github.com/selkies-project/selkies/actions) `Build & publish all images` **`js-interposer-ubuntu${DISTRIB_RELEASE}-tar.gz_linux-${ARCH}`** or **`js-interposer-ubuntu${DISTRIB_RELEASE}-deb_linux-${ARCH}`** Build Artifact (under `Artifacts (Produced during runtime)`) for each commit from the `main` branch.
 
-Alternatively, copy and install the pre-built Joystick Interposer build (change `--platform=` to `linux/arm64` for `aarch64`, and change `main` with `latest` and `0.0.0` to the release version for the latest stable release):
+Alternatively, copy and install the pre-built Joystick Interposer build (change `--platform=` to `` for `aarch64`, and change `main` with `latest` and `0.0.0` to the release version for the latest stable release):
 
 ```bash
 docker create --platform="linux/amd64" --name js-interposer ghcr.io/selkies-project/selkies/js-interposer:main-ubuntu${DISTRIB_RELEASE}
