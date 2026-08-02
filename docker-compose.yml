@@ -8,6 +8,8 @@ services:
     image: selkies-py-build
     build:
       context: .
+      additional_contexts:
+        web: service:web
       dockerfile: Dockerfile
       args:
         PYPI_PACKAGE: selkies
@@ -23,6 +25,8 @@ services:
     ###
 
     image: selkies-example:latest-${DISTRIB_IMAGE:-ubuntu}${DISTRIB_RELEASE:-24.04}
+    user: "0"
+    userns_mode: "keep-id"
     stdin_open: true
     tty: true
     # entrypoint: ["tini", "--", "/bin/bash"]
@@ -30,6 +34,8 @@ services:
     # entrypoint: ["/usr/bin/supervisord"]
     build:
       context: ./addons/example
+      additional_contexts:
+        dist: service:dist
       dockerfile: Dockerfile
       args:
         DISTRIB_IMAGE: ${DISTRIB_IMAGE:-ubuntu}
