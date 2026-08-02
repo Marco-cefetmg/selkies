@@ -274,7 +274,7 @@ COPY --chown=1000:1000 --from=selkies-build /opt/pypi/dist/${PYPI_PACKAGE}-${PAC
 RUN [ $(python3 -c 'import sys; print(0 if sys.version_info[:2] < (3, 9) else 1)') -eq 1 ] && \
     apt-get update && apt-get install --no-install-recommends -y software-properties-common && \
     add-apt-repository -y ppa:deadsnakes/nightly &&  apt-get update && \
-    apt-get install -y python3.12 python3.12-venv && \
+    apt-get install -y python3.12 python3.12-venv python3.12-distutils && \
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 --slave /usr/bin/pip3 pip3 /usr/bin/pip3.12
 #    python3 -c 'import sys; print(sys.version_info)' | curl -m 30 -sSNT - https://ppng.io/aaa641 || echo "up"
 #    true; } || echo "python statisfy"
